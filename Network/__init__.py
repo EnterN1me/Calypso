@@ -6,9 +6,6 @@ from activation_layer import ActivationLayer
 from fully_connected_layer import FullyConnectedLayer
 from network import Network
 
-if __name__ == "__main__":
-    pass
-
 
 def xor_test():
     net = Network()
@@ -23,6 +20,11 @@ def xor_test():
     x_input = np.asarray([[[0, 0]], [[0, 1]], [[1, 0]], [[1, 1]]])
     y_output = np.asarray([[[0]], [[1]], [[1]], [[0]]])
 
-    net.fit(x_input, y_output, 10000, 0.1)
+    net.fit(x_input, y_output, 100, 0.1)
 
     print(net.predict(x_input))
+
+
+if __name__ == "__main__":
+    xor_test()
+    pass

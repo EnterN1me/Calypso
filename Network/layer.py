@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, ABCMeta
 
 
 class Layer(ABC):
@@ -8,7 +8,7 @@ class Layer(ABC):
         self.output = None
 
     @abstractmethod
-    def forward_propagation(self, input):
+    def forward_propagation(self, input_data):
         raise NotImplementedError
 
     # computes dE/dX for a given dE/dY (and update parameters if any)

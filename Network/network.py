@@ -1,14 +1,13 @@
 class Network:
+
     def __init__(self):
         self.layers = []
         self.loss = None
         self.loss_prime = None
 
-    # add layer to network
     def add(self, layer):
         self.layers.append(layer)
 
-    # set loss to use
     def use(self, loss, loss_prime):
         self.loss = loss
         self.loss_prime = loss_prime
@@ -46,6 +45,7 @@ class Network:
 
                 # backward propagation
                 error = self.loss_prime(y_train[j], output)
+                print(type(error))
                 for layer in reversed(self.layers):
                     error = layer.backward_propagation(error, learning_rate)
 
