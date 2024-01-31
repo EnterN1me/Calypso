@@ -1,5 +1,5 @@
 from typing import Callable, Any
-from layer import Layer
+from Network.layer import Layer
 import numpy as np
 
 class Network:

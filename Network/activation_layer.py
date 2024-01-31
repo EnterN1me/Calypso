@@ -1,4 +1,4 @@
-from layer import Layer
+from Network.layer import Layer
 
 
 class ActivationLayer(Layer):

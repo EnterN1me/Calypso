@@ -13,13 +13,10 @@ class Network:
         self.loss_prime = loss_prime
 
     def predict(self, input_data):
-        # sample dimension first
         samples = len(input_data)
         result = []
 
-        # run network over all samples
         for i in range(samples):
-            # forward propagation
             output = input_data[i]
             for layer in self.layers:
                 output = layer.forward_propagation(output)
@@ -27,28 +24,21 @@ class Network:
 
         return result
 
+    def error(self, input_data, true_value):
+        return self.loss(self.predict(input_data), true_value)
+
     def fit(self, x_train, y_train, epochs, learning_rate):
-        # sample dimension first
         samples = len(x_train)
 
-        # training loop
         for i in range(epochs):
-            err = 0
             for j in range(samples):
-                # forward propagation
                 output = x_train[j]
                 for layer in self.layers:
                     output = layer.forward_propagation(output)
 
-                # compute loss (for display purpose only)
-                err += self.loss(y_train[j], output)
-
-                # backward propagation
                 error = self.loss_prime(y_train[j], output)
-                print(type(error))
                 for layer in reversed(self.layers):
                     error = layer.backward_propagation(error, learning_rate)
 
-            err /= samples
-            if (i+1) % 1000 == 0:
-                print('epoch %d/%d   error=%f' % (i + 1, epochs, err))
+    def __str__(self):
+        return "Neural Network with {} layers".format(len(self.layers))
